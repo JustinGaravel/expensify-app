@@ -18,21 +18,11 @@ const decrementCount = ({ decrementBy = 1 }  = {}) => ({
   decrementBy
 });
 
-// // Same as above
-// const decrementCount = ({ decrementBy = 1 } = {}) => {
-//   return {
-//     type: 'DECREMENT',
-//     decrementBy
-//   };
-// };
-
-// setCount ()
 const setCount = ({ count = 0 } = {}) => ({
   type: 'SET',
   count
 });
 
-// resetCount ()
 const resetCount = () => ({
   type: 'RESET'
 });
