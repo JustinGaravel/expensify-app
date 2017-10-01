@@ -146,6 +146,12 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     // convert both strings to lower case
 
     return startDateMatch && endDateMatch && textMatch;
+  }).sort((a,b) => {
+    if (sortBy === 'date') {
+      return a.createdAt < b.createdAt ? 1 : -1;
+    } else if (sortBy === 'amount') {
+      return a.amount < b.amount ? 1 : -1;
+    }
   });
 };
 
@@ -165,16 +171,20 @@ store.subscribe(() => {
   console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({
-  description: 'rent',
-  amount: 60000,
-  createdAt: 2000
-}));
+//////////////////////////////////////////////////
+// dispatch calls
+//////////////////////////////////////////////////
 
 const expenseTwo = store.dispatch(addExpense({
   description: 'starbucks coffee',
   amount: 445,
   createdAt: -2000
+}));
+
+const expenseOne = store.dispatch(addExpense({
+  description: 'rent',
+  amount: 60000,
+  createdAt: -2100
 }));
 
 
@@ -184,13 +194,13 @@ const expenseTwo = store.dispatch(addExpense({
 // store.dispatch(setTextFilter('RENT'));
 // store.dispatch(setTextFilter());
 //
-// store.dispatch(sortByAmount());
+store.dispatch(sortByAmount());
 // store.dispatch(sortByDate());
 //
-store.dispatch(setStartDate(-10025));
+// store.dispatch(setStartDate(-10025));
 // store.dispatch(setStartDate());
 //
-store.dispatch(setEndDate(0));
+// store.dispatch(setEndDate(0));
 
 const demoState = {
   expenses: [{
